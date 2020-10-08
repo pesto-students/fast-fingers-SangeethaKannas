@@ -135,7 +135,7 @@ const Game = props => {
         <section className="game-container">
             <GameHeader name={name} difficulty={getFromSession()} />
             <Row>
-                <Column sidebar mobile={window.innerWidth < 500 || games.length === 0 }>
+                <Column sidebar mobile={window.innerWidth < 500 }>
                     <ScoreBoard games={games} highScoreIndex={games.indexOf(Math.max(...games))} />
                 </Column>
                 <Column className="game-progress">

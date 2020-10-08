@@ -17,10 +17,13 @@
     display: flex;
     flex-direction: column;
     color: white;
+    align-items: stretch;
+    min-height: 50vh;
   }
 
-    .game-status > div{
+    .game-status div:first-child {
       flex-grow: 1;
+      flex-shrink: 0;
     }
 
     .score {
@@ -37,8 +40,3 @@
       margin: 2rem 0;
       font-size: 1.8rem;
     }
-
-
-  .fa-home {
-    font-size: 3rem;
-  }

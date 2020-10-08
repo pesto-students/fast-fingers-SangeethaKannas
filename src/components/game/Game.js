@@ -18,7 +18,7 @@ const Column = styled.div`
 `
 
 const Row = styled.div`
-    flexs-grow: 1;
+    flex-grow: 1;
     display: flex;
     min-width: 83%;
     max-width: 83%;
@@ -39,9 +39,26 @@ const DIFFICULTY_LEVELS = {
     'HARD': 2
 }
 
+const storeInSession = (difficultyLevel) => {
+    sessionStorage.setItem('difficulty', difficultyLevel);
+}
+
+const getFromSession = () => {
+    return sessionStorage.getItem('difficulty');
+}
+
 const getNewword = data => data[Math.floor(Math.random() * data.length)];
 
-const getTimerValue = (word, difficulty) => Math.ceil(word.length / difficulty) * 1000;
+const getTimerValue = (word, difficultyFactor) => Math.ceil(word.length / difficultyFactor) * 1000;
+
+const getDifficultyFactor = (games, difficultyLevel) => {
+    let difficultyFactor = difficultyLevel;
+    if(games && games.length > 0 ) {
+        difficultyFactor += (0.01 * games.length);
+    }
+
+    return difficultyFactor;
+}
 
 const Game = props => {
     let history = useHistory();
@@ -53,12 +70,13 @@ const Game = props => {
                 name: sessionStorage.getItem('name'),
                 difficulty: sessionStorage.getItem('difficulty')
             };
+    storeInSession(difficulty);
 
     //TODO Refactor, lot of state managment - needs to be split across smaller components
     const [word, setWord] = useState(getNewword(data));
     const [typedWord, setTypedWord] = useState('')
     const [games, setGames] = useState(JSON.parse(sessionStorage.getItem('games') || '[]'));
-    const [time, setTime] = useState(getTimerValue(word, (DIFFICULTY_LEVELS[difficulty])))
+    const [time, setTime] = useState(getTimerValue(word, getDifficultyFactor(games,DIFFICULTY_LEVELS[getFromSession()])))
     const [timeOffset, setTimeOffset] = useState(0);
 
     useEffect(() => {
@@ -74,7 +92,15 @@ const Game = props => {
                 sessionStorage.setItem('games', JSON.stringify(appendedGames));
                 setGames(appendedGames);
             }
-            setTime(getTimerValue(newWord, (DIFFICULTY_LEVELS[difficulty])));
+
+            const difficultyFactor = getDifficultyFactor(games, DIFFICULTY_LEVELS[getFromSession()]);
+            setTime(getTimerValue(newWord, difficultyFactor));
+
+            if(difficultyFactor >= DIFFICULTY_LEVELS['MEDIUM'] && difficultyFactor < DIFFICULTY_LEVELS['HARD']){
+                storeInSession('MEDIUM');
+            } else if(difficultyFactor >= DIFFICULTY_LEVELS['HARD']) {
+                storeInSession('HARD');
+            }
             history.push({state: {
                 gameIndex: appendedGames.length,
                 gameScore: timeTaken,
@@ -83,7 +109,9 @@ const Game = props => {
         } else {
             //Continue game
         }
-    },  [word, typedWord, time, timeOffset, games, history, path, difficulty])
+
+
+    },  [word, typedWord, time, timeOffset, games, history, path])
 
     const intervalRef = useRef();
 
@@ -105,9 +133,9 @@ const Game = props => {
 
     return (
         <section className="game-container">
-            <GameHeader name={name} difficulty={difficulty} />
+            <GameHeader name={name} difficulty={getFromSession()} />
             <Row>
-                <Column sidebar mobile={window.innerWidth < 500}>
+                <Column sidebar mobile={window.innerWidth < 500 || games.length === 0 }>
                     <ScoreBoard games={games} highScoreIndex={games.indexOf(Math.max(...games))} />
                 </Column>
                 <Column className="game-progress">

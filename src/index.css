@@ -9,12 +9,9 @@ body {
   font-family: 'Roboto';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
   background-image: url(/images/background/background2x.png);
-  background-color: #03262D;
-  background-size: 61% 119%;
+  background-color: #7CD2E3;
+  background-size: 70% 135%;
 }
 
 ul, li {
@@ -32,16 +29,29 @@ select option:disabled {
   display: none;
 }
 
-/** Reset CSS - Completed **/
+a {
+  text-decoration: none;
+}
+
+/** Reset CSS - end **/
+
 
 /** Variables - Starts **/
 :root {
   --action-color: #ff5155;
 }
 
-/** Variables - Completed **/
+@font-face {
+  font-family: 'Laser Corps Halftone Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Laser Corps Halftone Regular'), url('fonts/lasercorpshalf.woff') format('woff');
+}
 
-/** Media queries ***/
+/** Variables - end **/
+
+
+/** Media queries - starts ***/
 @media screen and (max-width:600px) {
   .row .column:first-child {
     display: none;
@@ -49,5 +59,10 @@ select option:disabled {
 
   .start-game-form-wrapper {
     width: 81vw;
+  }
+
+  body {
+    background-size: 100%;
+
   }
 }

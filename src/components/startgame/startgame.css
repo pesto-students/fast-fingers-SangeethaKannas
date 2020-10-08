@@ -6,22 +6,21 @@
 }
 
   .icon {
-      max-width: 4rem;
-      max-height: 4rem;
+      max-width: 9rem;
+      max-height: 9rem;
       margin-top: 1rem;
     }
 
   .start-name-header {
-    width: 25vw;
+    width: 27vw;
   }
 
     .tag-line-wrapper {
       display: flex;
-      font-size: 0.8rem;
     }
 
       .tag-line-wrapper hr {
-          width: 5rem;
+          width: 4rem;
           color: var(--action-color);
       }
 
@@ -43,18 +42,17 @@
     }
 
     .difficulty-level {
+      background: rgba(0,0,0,0.3);
       border-radius: 5px;
       border: solid 2px #97a1a3;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
+      font-size: 1.3rem;
       line-height: 1.5;
       letter-spacing: normal;
       text-align: left;
-      color: #97a5a7;
       margin: 2rem 0;
       padding: 0.7rem 1rem;
-      background: transparent;
       color: white;
-      font-size: 1.3rem;
     }

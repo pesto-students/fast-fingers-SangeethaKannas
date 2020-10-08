@@ -15,7 +15,7 @@ const Column = styled.div`
     padding: 15px;
 
     &:first-child {
-      width: 22%;
+      width: 25%;
     }
 `
 

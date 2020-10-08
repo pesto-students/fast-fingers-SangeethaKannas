@@ -17,7 +17,7 @@ const Footer = ({actionText, handleStopGame}) => {
         <FontAwesome className={'close'} />{actionText}
       </Button>
       <Link to="/">
-        <FontAwesome className={'home'} />
+        <FontAwesome className={'home'} fontSize={'3rem'} />
       </Link>
     </footer>
   )

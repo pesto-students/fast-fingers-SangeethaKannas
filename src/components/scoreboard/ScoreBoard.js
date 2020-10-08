@@ -32,7 +32,7 @@ const Scores = styled.section`
 const ScoreBoard = ({ games, highScoreIndex }) => {
 
     if (!games || games.length === 0) {
-        return (<div class="hide"></div>)
+        return (<div className="hide"></div>)
     } else {
         return (
             <Scores>

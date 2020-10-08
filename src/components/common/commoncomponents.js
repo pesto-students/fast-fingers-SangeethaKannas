@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const FontAwesome = ({className, fontSize = '1.5rem'}) => {
   const FA_STYLE = {
-      "fontSize": fontSize,
+      "font-size": fontSize,
        color: "var(--action-color)",
        "margin-right": "0.3rem",
        "min-width": "2rem",
@@ -13,7 +13,7 @@ const FontAwesome = ({className, fontSize = '1.5rem'}) => {
 }
 
 const Button = styled.button`
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: var(--action-color);
 `
 

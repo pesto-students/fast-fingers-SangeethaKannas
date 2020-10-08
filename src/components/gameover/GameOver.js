@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import GameHeader from "../gameheader/GameHeader";
 import GameFooter from "../gamefooter/GameFooter";
-import {Button, FontAwesome} from "../common/commoncomponents";
+import { Button, FontAwesome } from "../common/commoncomponents";
 import './gameover.css'
 
 const GameOver = props => {

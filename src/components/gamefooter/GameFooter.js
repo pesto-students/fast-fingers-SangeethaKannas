@@ -6,7 +6,7 @@ import { Button } from "../common/commoncomponents";
 
 const Footer = styled.footer`
   display: flex;
-  justifyContent: space-between;
+  justify-content: space-between;
   padding: 1rem 4rem;
   width: ${props => props.mobile ? "75%" : "85%"}
 `

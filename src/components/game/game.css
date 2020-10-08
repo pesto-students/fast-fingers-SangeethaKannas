@@ -1,0 +1,16 @@
+.game-container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+  .game-progress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .game-header, .game-footer {
+     flex-shrink: 0;
+  }

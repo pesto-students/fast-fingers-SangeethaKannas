@@ -14,9 +14,14 @@
   .game-status {
     flex-grow: 1;
     flex-shrink: 0;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     color: white;
   }
+
+    .game-status > div{
+      flex-grow: 1;
+    }
 
     .score {
       padding: 1rem 2rem;

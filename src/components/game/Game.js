@@ -13,10 +13,8 @@ import './game.css'
 const Column = styled.div`
     float: left;
     padding: 15px;
-
-    &:first-child {
-      width: 25%;
-    }
+    width:  ${props => props.sidebar ? '25%' :'auto'};
+    display: ${props => props.mobile ? 'none' :'block'};
 `
 
 const Row = styled.div`
@@ -33,6 +31,7 @@ const Row = styled.div`
         clear: both;
     }
 `
+
 //TODO: Move below methods to a service.
 const DIFFICULTY_LEVELS = {
     'EASY': 1,
@@ -108,8 +107,8 @@ const Game = props => {
         <section className="game-container">
             <GameHeader name={name} difficulty={difficulty} />
             <Row>
-                <Column>
-                    <ScoreBoard games={games} />
+                <Column sidebar mobile={window.innerWidth < 500}>
+                    <ScoreBoard games={games} highScoreIndex={games.indexOf(Math.max(...games))} />
                 </Column>
                 <Column className="game-progress">
                     <Timer timerValue={(time - timeOffset) / 1000} totalTime={time} />

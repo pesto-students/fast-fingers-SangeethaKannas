@@ -21,3 +21,15 @@
     text-align: right;
     font-family:'Laser Corps Halftone Regular';
   }
+
+@media screen and (max-width:600px) {
+  .game-header {
+    padding: 0.5rem 0rem;
+    min-width: 86%;
+    max-width: 86%;
+  }
+
+  .app-name {
+    font-size: 1.35rem;
+  }
+}

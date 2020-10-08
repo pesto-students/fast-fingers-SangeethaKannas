@@ -29,6 +29,10 @@ select option:disabled {
   display: none;
 }
 
+select::-ms-expand {
+  display: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -53,16 +57,12 @@ a {
 
 /** Media queries - starts ***/
 @media screen and (max-width:600px) {
-  .row .column:first-child {
-    display: none;
-  }
-
   .start-game-form-wrapper {
     width: 81vw;
   }
 
   body {
     background-size: 100%;
-
   }
+
 }

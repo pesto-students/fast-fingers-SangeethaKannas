@@ -1,4 +1,4 @@
-    import React from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 import styled from 'styled-components'
 
@@ -6,7 +6,12 @@ const Score = styled.li`
     text-align: left;
     color: white;
     margin: 0.5rem 0;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+
+    .best-score {
+        font-size: 0.5rem;
+        display: block;
+    }
 `
 
 const Scores = styled.section`
@@ -24,7 +29,7 @@ const Scores = styled.section`
   }
 `;
 
-const ScoreBoard = ({ games }) => {
+const ScoreBoard = ({ games, highScoreIndex }) => {
 
     if (!games || games.length === 0) {
         return (<div class="hide"></div>)
@@ -34,8 +39,16 @@ const ScoreBoard = ({ games }) => {
                 <header>SCORE BOARD</header>
                     <ul>
                         {
-                            games.map((score, index) =>
-                                <Score key={index}>Game {index + 1}: {score}</Score>
+                            games.map((score, index) => {
+                                return (
+                                <Score key={index}>
+                                    <span className="best-score">
+                                        {index === highScoreIndex ? 'PERSONAL BEST': ''}
+                                    </span>
+                                    Game {index + 1}: {score}
+                                </Score>
+                                )
+                                }
                             )
                         }
                     </ul>

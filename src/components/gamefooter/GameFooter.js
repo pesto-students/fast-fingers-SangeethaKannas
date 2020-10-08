@@ -1,26 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesome } from "../common/commoncomponents"
+import { FontAwesome } from "../common/commoncomponents";
+import styled from 'styled-components';
 import { Button } from "../common/commoncomponents";
 
-const _footerStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  padding: "1rem 4rem",
-  width: "85%"
-}
+const Footer = styled.footer`
+  display: flex;
+  justifyContent: space-between;
+  padding: 1rem 4rem;
+  width: ${props => props.mobile ? "75%" : "85%"}
+`
 
-const Footer = ({actionText, handleStopGame}) => {
+const GameFooter = ({actionText, handleStopGame}) => {
   return (
-    <footer style={_footerStyle}>
+    <Footer mobile={window.innerWidth < 500}>
       <Button onClick={handleStopGame} style={{"flex-grow": 1}}>
         <FontAwesome className={'close'} />{actionText}
       </Button>
       <Link to="/">
         <FontAwesome className={'home'} fontSize={'3rem'} />
       </Link>
-    </footer>
+    </Footer>
   )
 };
 
-export default Footer;
+export default GameFooter;

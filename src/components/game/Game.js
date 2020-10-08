@@ -33,7 +33,6 @@ const Row = styled.div`
         clear: both;
     }
 `
-
 //TODO: Move below methods to a service.
 const DIFFICULTY_LEVELS = {
     'EASY': 1,

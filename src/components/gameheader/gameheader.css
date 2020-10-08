@@ -1,0 +1,22 @@
+.game-header {
+  display: flex;
+  padding: 1rem 0rem;
+  min-width: 83%;
+  max-width: 83%;
+  align-self: center;
+  color: var(--action-color);
+}
+
+  .player-details {
+    flex-grow: 1;
+    text-align: left;
+  }
+
+  .player-name {
+    text-align: left;
+  }
+
+  .app-name {
+    font-size: 2rem;
+    text-align: right;
+  }

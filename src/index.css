@@ -37,8 +37,16 @@ a {
   text-decoration: none;
 }
 
-/** Reset CSS - end **/
+* {
+  outline: none;
+}
 
+*:focus {
+  outline: 0;
+}
+
+
+/** Reset CSS - end **/
 
 /** Variables - Starts **/
 :root {

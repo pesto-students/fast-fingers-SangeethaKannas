@@ -1,24 +1,24 @@
 import React from 'react'
 import { PropTypes } from "prop-types";
 import { FontAwesome } from "../common/commoncomponents"
-import './gameheader.css'
+import { PlayerDetails, PlayerName, Header, AppName } from "./GameHeaderStyles";
 
 const GameHeader = ({ name, difficulty }) => {
     return (
-        <header className="game-header">
-            <div className="player-details">
-                <div className="player-name">
+        <Header>
+            <PlayerDetails>
+                <PlayerName>
                     <FontAwesome className={'user'}/>
                     <span>{name}</span>
-                </div>
+                </PlayerName>
                 <div>
                     <FontAwesome className={'gamepad'}/>
                     <span>LEVEL : </span>
                     <span className="difficultylevel">{difficulty}</span>
                 </div>
-            </div>
-            <span className="app-name">fast fingers</span>
-        </header>
+            </PlayerDetails>
+            <AppName>fast fingers</AppName>
+        </Header>
         )
 }
 

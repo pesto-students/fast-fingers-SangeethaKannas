@@ -3,16 +3,16 @@ import { Link, useHistory } from 'react-router-dom';
 import GameHeader from "../gameheader/GameHeader";
 import GameFooter from "../gamefooter/GameFooter";
 import { Button, FontAwesome } from "../common/commoncomponents";
-import './gameover.css'
+import { GameOverSection, Header, GameStatus, Score } from "./GameOverStyles";
 
 const GameOver = props => {
     let history = useHistory();
 
     let { gameIndex, gameScore, highScore = false } =
-            typeof props.location.state != 'undefined'  ? props.location.state : {};
+            props.location && typeof props.location.state != 'undefined'  ? props.location.state : {};
 
     let { name, difficulty } =
-            typeof props.location.state != 'undefined' && props.location.state.difficulty
+            props.location && typeof props.location.state != 'undefined' && props.location.state.difficulty
             ? props.location.state :
             {
                 name: sessionStorage.getItem('name'),
@@ -20,29 +20,28 @@ const GameOver = props => {
             };
 
     return (
-        <section className="game-over">
+        <GameOverSection>
             <GameHeader name={name} difficulty={difficulty} />
-            <div className="game-status">
+            <GameStatus>
                 {
                     typeof gameIndex != 'undefined' ?
                         (<div>
-                            <header className="header">SCORE : GAME {gameIndex}</header>
-                            <div className="score">{gameScore}</div>
+                            <Header >SCORE : GAME {gameIndex}</Header>
+                            <Score >{gameScore}</Score>
                             {
                                 highScore === true ? <div className="new-high-score">NEW HIGH SCORE</div> : ""
                             }
                         </div>) :
-                        (<div>
-                        </div>)
+                        ('')
                 }
 
                 <Link to='/game' >
                     <FontAwesome className={'undo'}/>
                     <Button>PLAY AGAIN</Button>
                 </Link>
-            </div>
+            </GameStatus>
             <GameFooter actionText={'QUIT'} handleStopGame={() => history.push({pathname: '/'})}/>
-        </section>
+        </GameOverSection>
     )
 
 };

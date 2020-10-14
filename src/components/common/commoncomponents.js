@@ -13,8 +13,12 @@ const FontAwesome = ({className, fontSize = '1.5rem'}) => {
 }
 
 const Button = styled.button`
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: var(--action-color);
 `
 
-export { FontAwesome, Button };
+const FlexDiv = styled.div`
+  display: flex
+`
+
+export { FontAwesome, Button, FlexDiv };

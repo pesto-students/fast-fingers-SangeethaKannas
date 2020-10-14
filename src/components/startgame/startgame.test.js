@@ -5,7 +5,7 @@ import { getByAltText, getByPlaceholderText } from '@testing-library/react';
 import { shallow, mount } from 'enzyme';
 
 test('renders app name', () => {
-    const { getByText } = render(<StartGame />);
+    const { getByText } = shallow(<StartGame />);
     const imgElement = getByAltText(/img/i);
     expect(imgElement).toBeInTheDocument()
 

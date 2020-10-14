@@ -15,7 +15,7 @@ const DIFFICULTY_LEVELS = {
     'HARD': 2
 }
 
-const storeInSession = (difficultyLevel) => sessionStorage.setItem('difficulty', difficultyLevel);
+const storeInSession = (itemName, item) => sessionStorage.setItem(itemName, typeof item == 'string' ? item : JSON.stringify(item));
 
 const getFromSession = () => sessionStorage.getItem('difficulty');
 
@@ -34,26 +34,6 @@ const getDifficultyFactor = (games, difficultyLevel) => {
 
 const Game = props => {
     let history = useHistory();
-    let path = { pathname: 'result' };
-
-    let { name, difficulty } = typeof props.location.state !== 'undefined'
-            && props.location.state.difficulty !== ''
-            ? props.location.state : {
-                name: sessionStorage.getItem('name'),
-                difficulty: sessionStorage.getItem('difficulty')
-            };
-    storeInSession(difficulty);
-
-    const handleStopGame = () => {
-        clearInterval(intervalRef.current);
-        setGames([...games, totalTime]);
-        // history.push(history.push({state: {
-        //         gameIndex: games.length + 1,
-        //         gameScore: totalTime,
-        //         highScore: totalTime > Math.max(games)
-        //     }, ...path})
-        // )}
-    }
 
     //TODO Refactor, lot of state managment - needs to be split across smaller components
     const [word, setWord] = useState(getNewword(data));
@@ -63,15 +43,45 @@ const Game = props => {
     const [timeOffset, setTimeOffset] = useState(0);
     const [totalTime, setTotalTime] = useState(0);
 
+    let { name, difficulty } = typeof props.location.state !== 'undefined'
+            && props.location.state.difficulty !== ''
+            ? props.location.state : {
+                name: sessionStorage.getItem('name'),
+                difficulty: sessionStorage.getItem('difficulty')
+            };
+    if(name) {
+        storeInSession('difficulty', difficulty);
+    } else {
+        history.push({pathname: '/'});
+    }
+
+    const handleStopGame = () => {
+        clearInterval(intervalRef.current);
+        const appendedGames = [...games, totalTime]
+        setGames([...games, totalTime]);
+        storeInSession('games', appendedGames );
+
+        const resultPath = {
+            pathname: 'result',
+            state: {
+                gameIndex: games.length + 1,
+                gameScore: Math.round(totalTime, 2),
+                highScore: totalTime > Math.max(games)
+            }
+        }
+
+        history.push( resultPath );
+    }
+
     useEffect(() => {
         if (word.toLowerCase() === typedWord.toLowerCase()) {
             //If successful increase difficulty factor
             const difficultyFactor = getDifficultyFactor(games, DIFFICULTY_LEVELS[getFromSession()]);
 
             if(difficultyFactor >= DIFFICULTY_LEVELS['MEDIUM'] && difficultyFactor < DIFFICULTY_LEVELS['HARD']){
-                storeInSession('MEDIUM');
+                storeInSession('difficulty','MEDIUM');
             } else if(difficultyFactor >= DIFFICULTY_LEVELS['HARD']) {
-                storeInSession('HARD');
+                storeInSession('difficulty', 'HARD');
             }
 
             setTotalTime(totalTime + ((time - timeOffset) / 1000));
@@ -91,15 +101,16 @@ const Game = props => {
 
     const intervalRef = useRef();
 
+    const TIMER_INTERVALS = 10;
     useEffect(() => {
         const interval = setInterval(() => {
             if (timeOffset >= time) {
-                clearInterval(interval);
-                history.push(path);
+                handleStopGame();
             } else {
-                setTimeOffset(timeOffset + 10);
+                setTimeOffset(timeOffset + TIMER_INTERVALS);
             }
-        }, 10);
+        }, TIMER_INTERVALS);
+
         intervalRef.current = interval;
 
         return () => {

@@ -35,7 +35,7 @@ export const RightArrow = styled.span`
 `;
 
 export const Input = styled.input`
-    border: ${inputError => inputError ? '3px solid #df0808': 'none'};
+    border: ${inputError => inputError.inputError === true ? '3px solid #df0808': 'none'};
     color: #eaeaea;
     padding: 0.9rem 1rem;
     font-size: 1.1rem;

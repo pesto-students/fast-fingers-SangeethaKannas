@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { StartGameDiv, StartButton, RightArrow, Input, StartGameWrapper, DifficultyLevel} from './StartGameStyles'
+import { StartGameDiv, StartButton, RightArrow, Input, StartGameWrapper, DifficultyLevel } from './StartGameStyles'
 import AppHeader from './appheader/appheader'
 
 //TODO: Move this to a service
@@ -17,6 +17,7 @@ const StartGame = () => {
     const [name, setName] = useState(getNameFromSessionStorage() || '');
     const [difficulty, setDifficulty] = useState('');
     const [inputError, setInputError] = useState(false);
+
     const REDIRECT_TO_GAME = {
         pathname: '/game',
         state: { name: name, difficulty: difficulty }
@@ -26,18 +27,18 @@ const StartGame = () => {
         if(difficulty === '') {
             setDifficulty('EASY');
         }
-        const error = name.length > 0
-        setInputError(error);
-        return error;
+        return name.length > 0
     }
 
     const nameInput = useRef(null);
 
-    const handleStartGameClick = () => {
+    const handleStartGameClick = (event) => {
+        event.preventDefault();
         if(checkForErrors()) {
             storeInSession(name, difficulty)
             history.push(REDIRECT_TO_GAME)
         } else {
+            setInputError(true);
             nameInput.current.focus();
         }
     }
@@ -46,12 +47,16 @@ const StartGame = () => {
         <StartGameDiv>
             <AppHeader />
             <StartGameWrapper>
-                <Input
+                <Input required
                     ref={nameInput}
                     placeholder="TYPE YOUR NAME"
                     inputError={inputError}
                     value={name}
-                    onChange={event => setName(event.target.value)}>
+                    onChange={event =>  {
+                            setInputError(event.target.value.length === 0);
+                            setName(event.target.value)
+                        }
+                    }>
                 </Input>
                 <DifficultyLevel
                     defaultValue=""

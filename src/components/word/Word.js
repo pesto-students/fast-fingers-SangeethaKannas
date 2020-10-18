@@ -1,30 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const _wordStyle = { margin: "1rem 0" };
+const Letter = styled.span`
+    text-transform: uppercase;
+    font-size: 2rem;
+    margin: 0.1rem 0.3rem;
+    color: ${props => props.typedLetter ? (props.letter.toLowerCase() === props.typedLetter.toLowerCase() ? '#54BA18' : '#445298'): '#fff'};
 
-const Letter = ({letter, typedLetter, ...props}) => {
-    const _letterStyle = {
-        "text-transform": "uppercase",
-        "font-size": "2rem",
-        margin: "0.1rem 0.3rem",
-        color: typedLetter ? (letter.toLowerCase() === typedLetter.toLowerCase() ? '#54BA18' : '#445298'): '#fff'
+    @media screen and (max-width:600px) {
+        margin: 0.1rem 0.1rem;
+        font-size: 1.7rem;
+    }
+`
+
+const WordWrapper = styled.div`
+    margin: 1rem 0;
+
+    @media screen and (max-width:600px) {
+        margin-top: 2rem;
+        margin-bottom: 3rem;
     }
 
-    return <span style={_letterStyle} {...props}>{letter}</span>;
-}
+`
 
-const Word = ({ word, typedWord }) => {
-    return (
-        <div style={_wordStyle}>
+const Word = ({ word, typedWord }) =>
+        <WordWrapper>
             {
-                [...word].map((letter, index) => {
-                    return (<Letter letter={letter} typedLetter={typedWord[index]} key={index}/>)
-                })
+                [...word]
+                    .map((letter, index) =>
+                        <Letter
+                            letter={letter}
+                            typedLetter={typedWord[index]}
+                            key={index}>{letter}
+                        </Letter>
+                    )
             }
-        </div>
-    )
-}
+        </WordWrapper>
 
 Word.propTypes = {
     word: PropTypes.string,

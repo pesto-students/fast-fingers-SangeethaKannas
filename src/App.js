@@ -5,7 +5,7 @@ import StartGame from "./components/startgame/StartGame";
 import Game from "./components/game/Game";
 import GameOver from "./components/gameover/GameOver";
 import { ThemeProvider } from 'styled-components';
-import { LightTheme } from './components/themes/LightTheme'
+//import { LightTheme } from './components/themes/LightTheme'
 import { DarkTheme } from './components/themes/DarkTheme'
 
 

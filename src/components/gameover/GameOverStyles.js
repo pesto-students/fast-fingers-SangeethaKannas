@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { FlexDiv } from "../common/commoncomponents";
 
-export const GameOverSection = styled.section`
-  display: flex;
+export const GameOverSection = styled(FlexDiv)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 95vw;
+  height: 90vh;
 `
 
 export const Header = styled.header`
@@ -13,30 +14,34 @@ export const Header = styled.header`
   color: white;
 `
 
-export const GameStatus = styled.div`
-    flex-grow: 1;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    color: white;
-    align-items: stretch;
+export const GameStatus = styled(FlexDiv)`
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  justify-content: center;
 
-    &:first-child {
-      flex-grow: 1;
-    }
+  &:first-child {
+    flex-grow: 1;
+  }
 `
 
 export const Score = styled.div`
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    font-size: 3.5rem;
-    justify-content: center;
-    color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  font-size: 3.5rem;
+  justify-content: center;
+  color: white;
+
+  @media screen and (max-width:600px) {
+    font-size: 9rem;
+  }
 `
 
 export const NewHighScore = styled.div`
-    color: white;
-    margin: 2rem 0;
-    font-size: 1.8rem;
+  color: white;
+  margin: 2rem 0;
+  font-size: 1.8rem;
 `

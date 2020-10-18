@@ -15,10 +15,8 @@ export const AppName = styled.span`
   font-family:'Laser Corps Halftone Regular';
 
   @media screen and (max-width:600px) {
-    .app-name {
-      font-size: 1.35rem;
-    }
-}
+    font-size: 1.5rem;
+  }
 `
 
 export const Header = styled.header`
@@ -30,10 +28,8 @@ export const Header = styled.header`
   color: var(--action-color);
 
   @media screen and (max-width:600px) {
-  .game-header {
     padding: 0.5rem 0rem;
-    min-width: 86%;
-    max-width: 86%;
+    min-width: 100%;
+    max-width: 100%;
   }
-}
 `

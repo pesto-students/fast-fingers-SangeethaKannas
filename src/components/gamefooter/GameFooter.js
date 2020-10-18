@@ -1,22 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesome } from "../common/commoncomponents";
 import styled from 'styled-components';
-import { Button } from "../common/commoncomponents";
+
+import { FontAwesome } from "../common/commoncomponents";
+import { ActionButton } from "../common/Button";
 
 const Footer = styled.footer`
   display: flex;
   justifyContent: space-between;
   padding: 1rem 4rem;
-  width: ${props => props.mobile ? "75%" : "85%"}
+
+
+  @media screen and (max-width:600px) {
+    width: 100%;
+    padding: 1rem 0;
+  }
 `
 
 const GameFooter = ({actionText, handleStopGame}) => {
   return (
     <Footer mobile={window.innerWidth < 500}>
-      <Button onClick={handleStopGame} style={{"flex-grow": 1}}>
+      <ActionButton onClick={handleStopGame} style={{"flex-grow": 1}}>
         <FontAwesome className={'close'} />{actionText}
-      </Button>
+      </ActionButton>
       <Link to="/">
         <FontAwesome className={'home'} fontSize={'3rem'} />
       </Link>

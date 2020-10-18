@@ -12,10 +12,10 @@ import { DarkTheme } from './components/themes/DarkTheme'
 const App = () => {
 
   //const theme = localStorage.get('theme') === 'Dark' ? DarkTheme : LightTheme;
-  const theme = new DarkTheme();
-  const themeChanger = () => {
-
-  }
+ // const theme = new DarkTheme();
+ // const themeChanger = () => {
+//
+  //}
 
   return (
     <Router>

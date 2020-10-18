@@ -1,16 +1,8 @@
 import styled from 'styled-components'
-import { Button } from '../common/commoncomponents';
+import { FlexDiv } from '../common/commoncomponents';
+import { ActionButton } from '../common/Button'
 
-export const StartGameDiv = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 1rem 0;
-`
-
-export const StartButton = styled(Button)`
-    text-align: center;
-    color: var(--action-color);
+export const StartButton = styled(ActionButton)`
     font-size: 2rem;
     display: flex;
     align-items: center;
@@ -60,13 +52,19 @@ export const DifficultyLevel = styled.select`
 `
 
 export const StartGameWrapper = styled.div`
-  display: grid;
-  align-items: center;
-  flex-direction: column;
-  padding: 2rem 1rem;
-  width: 25vw;
+    display: grid;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 1rem;
+    width: 25vw;
 
-  @media screen and (max-width:600px) {
-      width: 81vw;
-  }
+    @media screen and (max-width:600px) {
+        width: 81vw;
+    }
+`
+
+export const StartGameDiv = styled(FlexDiv)`
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem 0;
 `

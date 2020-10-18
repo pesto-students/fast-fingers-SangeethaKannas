@@ -13,21 +13,39 @@ const WordInput = styled.input`
   text-transform: uppercase;
   text-justify: inter-word;
   text-align: match-parent;
+
+  @media screen and (max-width:600px) {
+      margin-top: 1rem;
+      margin-bottom: 3rem;
+      border: 2px solid white;
+  }
 `
 
-const TypeWord = ({ word, typedWord, onChange }) => {
+const TypeWord = ({ word, typedWord, onChange, paused }) => {
 
   const textInput = useRef(null);
 
   useEffect(() => {
     textInput.current.focus();
   }, []);
-    return (
-        <section>
-            <Word word={word} typedWord={typedWord} />
-            <WordInput ref={textInput} className="word-input" value={typedWord} onChange={e => onChange(e.target.value)} />
-        </section>
-    )
+
+  useEffect(() => {
+    if (paused === false) {
+      textInput.current.focus();
+    }
+  }, [paused])
+
+  return (
+    <section>
+        <Word word={word} typedWord={typedWord} />
+        <WordInput
+            autoFocus
+            ref={textInput}
+            className="word-input"
+            value={typedWord}
+            onChange={e => onChange(e)} />
+    </section>
+  )
 }
 
 export default TypeWord;

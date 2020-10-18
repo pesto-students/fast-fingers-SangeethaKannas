@@ -45,6 +45,14 @@ a {
   outline: 0;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+tr {
+  margin-bottom: 1rem;
+}
+
 
 /** Reset CSS - end **/
 

@@ -2,8 +2,9 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import GameHeader from "../gameheader/GameHeader";
 import GameFooter from "../gamefooter/GameFooter";
-import { Button, FontAwesome } from "../common/commoncomponents";
+import { FontAwesome } from "../common/commoncomponents";
 import { GameOverSection, Header, GameStatus, Score } from "./GameOverStyles";
+import { ActionButton } from '../common/Button'
 
 const GameOver = props => {
     let history = useHistory();
@@ -37,7 +38,7 @@ const GameOver = props => {
 
                 <Link to='/game' >
                     <FontAwesome className={'undo'}/>
-                    <Button>PLAY AGAIN</Button>
+                    <ActionButton>PLAY AGAIN</ActionButton>
                 </Link>
             </GameStatus>
             <GameFooter actionText={'QUIT'} handleStopGame={() => history.push({pathname: '/'})}/>

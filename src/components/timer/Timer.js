@@ -1,7 +1,9 @@
 import React from 'react'
-import { Svg, Circle, Text } from "./TimerStyles";
-const Timer = ({ timerValue, totalTime }) => {
-    const radius = 51;
+import { Svg, Circle, Text, FontAwesomeSVG } from "./TimerStyles";
+
+const Timer = ({ timerValue, totalTime, handlePause, paused }) => {
+    const isMobile = window.innerWidth < 500;
+    const radius = isMobile ? 60: 51;
     const circumference = radius * 2 * Math.PI;
 
     return (
@@ -13,7 +15,12 @@ const Timer = ({ timerValue, totalTime }) => {
                 strokeDasharray={circumference + ' ' + circumference}
                 strokeDashoffset={circumference - ((totalTime - (timerValue * 1000)) / totalTime) * circumference}
             />
-            <Text x="50%" y="50%" className="timer-text">{timerValue}</Text>
+            <Text x="50%" y={isMobile? '45%': '50%' } className="timer-text">{timerValue}</Text>
+            <g>
+                <FontAwesomeSVG x="50%" y ={isMobile? '75%': '65%'} onClick={handlePause} >
+                    { paused ? '\uf04b' : '\uf04c' }
+                </FontAwesomeSVG>
+            </g>
         </Svg>
     )
 }

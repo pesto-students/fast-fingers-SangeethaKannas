@@ -1,24 +1,27 @@
 import React from 'react';
 import styled from 'styled-components'
+import BaseElement from './BaseElement';
 
-const FontAwesome = ({className, fontSize = '1.5rem'}) => {
+export const FontAwesome = ({className, fontSize = '1.5rem', ...props}) => {
   const FA_STYLE = {
       "font-size": fontSize,
-       color: "var(--action-color)",
-       "margin-right": "0.3rem",
-       "min-width": "2rem",
-       "text-align": "center",
+       color: props.color || "var(--action-color)",
+       "min-width": "2rem"
   }
   return <i style={FA_STYLE} className={"fa fa-" + className} aria-hidden="true"></i>;
 }
 
-const Button = styled.button`
-    font-size: 1.5rem;
-    color: var(--action-color);
-`
+export const FlexDiv = styled(BaseElement).attrs(props => {
+  return {
+    spacing: {
+      px: props.theme.spacing(2),
+      py: props.theme.spacing(1),
+    },
+    flex: {
 
-const FlexDiv = styled.div`
+    },
+    textAlign: 'center',
+  }
+})`
   display: flex
 `
-
-export { FontAwesome, Button, FlexDiv };

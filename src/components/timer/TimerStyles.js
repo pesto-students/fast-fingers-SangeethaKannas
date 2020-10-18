@@ -18,3 +18,12 @@ export const Text = styled.text`
   fill: white;
   font-size: 1.5rem;
 `
+
+export const FontAwesomeSVG = styled(Text)`
+  font-family: FontAwesome;
+
+  @media screen and (max-width:600px) {
+    font-size : 2.1rem;
+  }
+
+`

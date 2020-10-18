@@ -29,7 +29,7 @@ const Scores = styled.section`
   }
 `;
 
-const ScoreBoard = ({ games, highScoreIndex }) => {
+const ScoreBoard = ({ games, highScoreIndex, handleGameClick }) => {
 
     if (!games || games.length === 0) {
         return (<div className="hide"></div>)
@@ -39,19 +39,20 @@ const ScoreBoard = ({ games, highScoreIndex }) => {
                 <header>SCORE BOARD</header>
                     <ul>
                         {
-                            games.map((score, index) => {
-                                return (
-                                <Score key={index}>
+                            games.map((game, index) => {
+                              return (
+                                <Score key={index} onClick={(event) => handleGameClick(event)}>
                                     <span className="best-score">
                                         {index === highScoreIndex ? 'PERSONAL BEST': ''}
                                     </span>
-                                    Game {index + 1}: {score}
+                                    Game {index + 1}: {game.totaltime}
                                 </Score>
                                 )
-                                }
+                              }
                             )
                         }
                     </ul>
+
             </Scores>
         )
     }

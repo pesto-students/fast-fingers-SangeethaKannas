@@ -114,6 +114,7 @@ const Game = props => {
                          highScoreIndex={games.indexOf(Math.max(...games))}
                          handleGameClick={handleGameClick}
                     />
+
                 </Column>
                 <Column gameprogress>
                     <Timer

@@ -7,7 +7,7 @@ import { ActionButton } from "../common/Button";
 
 const Footer = styled.footer`
   display: flex;
-  justifyContent: space-between;
+  justify-content: space-between;
   padding: 1rem 4rem;
 
 

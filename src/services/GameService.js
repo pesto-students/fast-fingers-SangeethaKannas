@@ -23,7 +23,7 @@ const GameService = {
 
   getTimerValue: (word, difficultyFactor) => Math.ceil(word.length / difficultyFactor) * 1000,
 
-  getDifficultyFactor: (gamesCount, currentDifficultyFactor) => (currentDifficultyFactor + (0.1 * gamesCount)),
+  getDifficultyFactor: (gamesCount, currentDifficultyFactor) => (currentDifficultyFactor + (0.01 * gamesCount)),
 
   getCurrentDifficultyFactor: () => DIFFICULTY_LEVELS[sessionStorage.getItem('difficulty')],
 

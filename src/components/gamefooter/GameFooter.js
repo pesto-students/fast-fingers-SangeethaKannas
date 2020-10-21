@@ -7,20 +7,19 @@ import { ActionButton } from "../common/Button";
 
 const Footer = styled.footer`
   display: flex;
-  justify-content: space-between;
-  padding: 1rem 4rem;
-
+  padding: 1rem 0;
+  width: 100%;
 
   @media screen and (max-width:600px) {
     width: 100%;
-    padding: 1rem 0;
+    padding: 0;
   }
 `
 
 const GameFooter = ({actionText, handleStopGame}) => {
   return (
     <Footer mobile={window.innerWidth < 500}>
-      <ActionButton onClick={handleStopGame} style={{"flex-grow": 1}}>
+      <ActionButton onClick={handleStopGame} >
         <FontAwesome className={'close'} />{actionText}
       </ActionButton>
       <Link to="/">

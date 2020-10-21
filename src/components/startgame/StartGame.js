@@ -1,50 +1,76 @@
-import React, { useEffect, useRef } from 'react';
-import Word from '../word/Word';
-import styled from "styled-components";
+import React, { useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { StartGameDiv, StartButton, RightArrow, Input, StartGameWrapper, DifficultyLevel } from './StartGameStyles'
+import AppHeader from './appheader/appheader'
+import { ThemeProvider } from 'styled-components';
+import { DarkTheme } from '../themes/DarkTheme';
 
-const WordInput = styled.input`
-  padding: 0.7rem 1rem;
-  border: 1px solid rgb(154, 158, 154);
-  min-width: 14rem;
-  background-color: #98A8AB;
-  color: white;
-  border-radius: 5px;
-  text-transform: uppercase;
-  text-justify: inter-word;
-  text-align: match-parent;
+//TODO: Move this to a service
+const getNameFromSessionStorage = () => sessionStorage.getItem('name');
 
-  @media screen and (max-width:600px) {
-      margin-top: 1rem;
-      margin-bottom: 3rem;
-      border: 2px solid white;
-  }
-`
-
-const TypeWord = ({ word, typedWord, onChange, paused }) => {
-
-  const textInput = useRef(null);
-
-  useEffect(() => {
-    textInput.current.focus();
-  }, []);
-
-  useEffect(() => {
-    if (paused === false) {
-      textInput.current.focus();
-    }
-  }, [paused])
-
-  return (
-    <section>
-        <Word word={word} typedWord={typedWord} />
-        <WordInput
-            autoFocus
-            ref={textInput}
-            className="word-input"
-            value={typedWord}
-            onChange={e => onChange(e)} />
-    </section>
-  )
+const storeInSession = (name, difficulty) => {
+    sessionStorage.setItem('name', name);
+    sessionStorage.setItem('difficulty', difficulty);
 }
 
-export default TypeWord;
+const StartGame = () => {
+    let history = useHistory();
+
+    const [name, setName] = useState(getNameFromSessionStorage() || '');
+    const [difficulty, setDifficulty] = useState('');
+    const [inputError, setInputError] = useState(false);
+
+    const REDIRECT_TO_GAME = {
+        pathname: '/game',
+        state: { name: name, difficulty: difficulty }
+    };
+
+    const nameInput = useRef(null);
+
+    const handleStartGameClick = (event) => {
+        event.preventDefault();
+        if(name.length > 0) {
+            storeInSession(name, difficulty.length === 0 ? 'EASY' : difficulty)
+            history.push(REDIRECT_TO_GAME)
+        } else {
+            setInputError(true);
+            nameInput.current.focus();
+        }
+    }
+    const theme = new DarkTheme();
+
+    return (
+        <ThemeProvider theme={theme} >
+          <StartGameDiv>
+            <AppHeader />
+            <StartGameWrapper>
+                <Input required
+                    ref={nameInput}
+                    placeholder="TYPE YOUR NAME"
+                    inputError={inputError}
+                    value={name}
+                    onChange={event =>  {
+                            setInputError(event.target.value.length === 0);
+                            setName(event.target.value)
+                        }
+                    }>
+                </Input>
+                <DifficultyLevel
+                    defaultValue=""
+                    onChange={event =>console.log(event.target.value) || setDifficulty(event.target.value)}>
+                    <option value="" disabled>DIFFICULTY LEVEL</option>
+                    <option value="EASY">EASY</option>
+                    <option value="MEDIUM">MEDIUM</option>
+                    <option value="HARD">HARD</option>
+                </DifficultyLevel>
+                <StartButton onClick={handleStartGameClick} >
+                    <RightArrow />
+                    START GAME
+                </StartButton>
+            </StartGameWrapper>
+        </StartGameDiv>
+        </ThemeProvider>
+    )
+}
+
+export default StartGame;

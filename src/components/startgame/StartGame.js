@@ -25,19 +25,12 @@ const StartGame = () => {
         state: { name: name, difficulty: difficulty }
     };
 
-    const checkForErrors = (event) => {
-        if(difficulty === '') {
-            setDifficulty('EASY');
-        }
-        return name.length > 0
-    }
-
     const nameInput = useRef(null);
 
     const handleStartGameClick = (event) => {
         event.preventDefault();
-        if(checkForErrors()) {
-            storeInSession(name, difficulty)
+        if(name.length > 0) {
+            storeInSession(name, difficulty.length === 0 ? 'EASY' : difficulty)
             history.push(REDIRECT_TO_GAME)
         } else {
             setInputError(true);

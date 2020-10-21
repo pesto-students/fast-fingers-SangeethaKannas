@@ -32,18 +32,26 @@ export const Row = styled.div`
 
 export const Column = styled.div`
   float: left;
-  width:  ${props => props.sidebar ? '25%' :'auto'};
+  width:  ${props => props.sidebar ? '25%' :'75%'};
   display: ${props => props.mobile ? 'none' : props.gameprogress ? 'flex' : 'block'};
   flex-direction: ${props => props.gameprogress ? 'column': 'inherit'};
   align-items: ${props => props.gameprogress ? 'center': 'inherit'};
+  flex-grow: 1;
 `
 
 export const TableRow = styled.tr`
   margin: 0.5rem 0;
+  display:table;
+  width:100%;
+  table-layout:fixed;
 `
 
 export const TableColumn = styled.td`
    padding: 0.2rem 2rem;
+`
+
+export const TableHead = styled(TableRow)`
+   width: calc( 100% - 1em )
 `
 
 export const TableHeader = styled.th`
@@ -58,4 +66,5 @@ export const GameQualitySpan = styled.span`
   border-radius: 4px;
   margin: 0.2rem 1rem;
   display: inline-block;
+  text-align: center;
 `

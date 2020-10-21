@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import GameHeader from "../gameheader/GameHeader";
 import GameFooter from "../gamefooter/GameFooter";
 import { FontAwesome } from "../common/commoncomponents";
-import { GameOverSection, Header, GameStatus, Score } from "./GameOverStyles";
+import { GameOverSection, Header, GameStatus, Score, NewHighScore } from "./GameOverStyles";
 import { ActionButton } from '../common/Button'
 
 const GameOver = props => {
@@ -27,10 +27,10 @@ const GameOver = props => {
                 {
                     typeof gameIndex != 'undefined' ?
                         (<div>
-                            <Header >SCORE : GAME {gameIndex}</Header>
-                            <Score >{gameScore}</Score>
+                            <Header>SCORE : GAME {gameIndex}</Header>
+                            <Score>{gameScore}</Score>
                             {
-                                highScore === true ? <div className="new-high-score">NEW HIGH SCORE</div> : ""
+                                highScore === true ? <NewHighScore>NEW HIGH SCORE</NewHighScore> : ""
                             }
                         </div>) :
                         ('')
@@ -47,4 +47,4 @@ const GameOver = props => {
 
 };
 
-export default GameOver;
+export default GameOver;    

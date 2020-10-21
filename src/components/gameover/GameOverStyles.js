@@ -5,8 +5,13 @@ export const GameOverSection = styled(FlexDiv)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 95vw;
-  height: 90vh;
+  width: 100vw;
+  height: 99vh;
+  padding: 1rem 4rem;
+
+  @media screen and (max-width:600px) {
+    padding: 0.5rem 1rem;
+  }
 `
 
 export const Header = styled.header`
@@ -28,15 +33,15 @@ export const GameStatus = styled(FlexDiv)`
 `
 
 export const Score = styled.div`
-  padding: 1rem 2rem;
+  padding: 3rem 2rem;
   display: flex;
   align-items: center;
-  font-size: 3.5rem;
+  font-size: 5.5rem;
   justify-content: center;
   color: white;
 
   @media screen and (max-width:600px) {
-    font-size: 9rem;
+    font-size: 7rem;
   }
 `
 

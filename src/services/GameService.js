@@ -6,18 +6,28 @@ const DIFFICULTY_LEVELS = {
   'HARD': 2
 }
 
-const storeInSession = (itemName, item) => sessionStorage.setItem(itemName, typeof item == 'string' ? item : JSON.stringify(item));
+const DATA_BY_LEVEL = {
+  'EASY': data.filter(word => word.length < 6),
+  'MEDIUM': data.filter(word => word.length >= 6 && word.length < 11),
+  'HARD': data.filter(word => word.length >= 11)
+}
+
+const storeInSession = (itemName, item) =>
+      sessionStorage.setItem(itemName, typeof item == 'string' ? item : JSON.stringify(item));
 
 const GameService = {
-  getNewword: () => data[Math.floor(Math.random() * data.length)],
+  getNewword: (difficultyLevel) => {
+    const data = DATA_BY_LEVEL[difficultyLevel];
+    return data[Math.floor(Math.random() * data.length)]
+  },
 
   getTimerValue: (word, difficultyFactor) => Math.ceil(word.length / difficultyFactor) * 1000,
 
-  getDifficultyFactor: (gamesCount, currentDifficultyFactor) => (currentDifficultyFactor + (0.01 * gamesCount)),
+  getDifficultyFactor: (gamesCount, currentDifficultyFactor) => (currentDifficultyFactor + (0.1 * gamesCount)),
 
   getCurrentDifficultyFactor: () => DIFFICULTY_LEVELS[sessionStorage.getItem('difficulty')],
 
-  getUpdatedDifficultyFactor: (difficultyFactor) => {
+  updatedDifficultyFactor: (difficultyFactor) => {
     let newDifficultyLevel = '';
     if (difficultyFactor >= DIFFICULTY_LEVELS['MEDIUM'] && difficultyFactor < DIFFICULTY_LEVELS['HARD']) {
       newDifficultyLevel = 'MEDIUM';
@@ -26,6 +36,7 @@ const GameService = {
     } else {
       newDifficultyLevel = 'EASY';
     }
+    console.log(newDifficultyLevel)
     storeInSession('difficulty', newDifficultyLevel)
   },
 
@@ -42,7 +53,10 @@ const GameService = {
 
   getBgColor: (wordLength, changesCount) => {
     return `rgb(${0 + (changesCount - wordLength)}, ${255 - (changesCount - wordLength)}, 0, 1)`
-  }
+  },
+
+  // getSyllables: word => {
+  // }
 }
 
 export default GameService;

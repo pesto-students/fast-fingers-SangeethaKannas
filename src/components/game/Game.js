@@ -8,23 +8,12 @@ import TypeWord from "../typeword/TypeWord";
 import GameFooter from "../gamefooter/GameFooter";
 import Modal from '../modal/modal';
 
-import { Row, Column, GameContainer, TableRow, TableColumn, TableHeader, GameQualitySpan } from "./GameStyle";
+import { Row, Column, GameContainer, TableRow, TableColumn, TableHeader, GameQualitySpan, TableHead } from "./GameStyle";
 import GameService from '../../services/GameService'
 import SocialMedia from '../socialmedia/SocialMedia';
 
 const Game = props => {
     let history = useHistory();
-
-    //TODO Refactor, lot of state managment - needs to be split across smaller components
-    const [word, setWord] = useState(GameService.getNewword());
-    const [typedWord, setTypedWord] = useState('')
-    const [games, setGames] = useState(GameService.getGames());
-    const [game, setGame] = useState({keystrokes: 0, words: [], totaltime: 0});
-    const [selectedGame, setSelectedGame] = useState({words: []});
-    const [keystrokes, setKeyStrokes] = useState(0);
-    const [time, setTime] = useState(GameService.getTimerValue(word, GameService.getDifficultyFactor(games.length, GameService.getCurrentDifficultyFactor())))
-    const [timeOffset, setTimeOffset] = useState(0);
-    const [paused, setPaused] = useState(false);
     let { name, difficulty } = typeof props.location.state !== 'undefined'
             && props.location.state.difficulty !== '' ? props.location.state : GameService.getDataFromSession();
 
@@ -33,6 +22,17 @@ const Game = props => {
     } else {
         history.push({pathname: '/'});
     }
+
+    //TODO Refactor, lot of state managment - needs to be split across smaller components
+    const [word, setWord] = useState(GameService.getNewword(difficulty));
+    const [typedWord, setTypedWord] = useState('')
+    const [games, setGames] = useState(GameService.getGames());
+    const [game, setGame] = useState({keystrokes: 0, words: [], totaltime: 0});
+    const [selectedGame, setSelectedGame] = useState({words: []});
+    const [keystrokes, setKeyStrokes] = useState(0);
+    const [time, setTime] = useState(GameService.getTimerValue(word, GameService.getDifficultyFactor(games.length, GameService.getCurrentDifficultyFactor())))
+    const [timeOffset, setTimeOffset] = useState(0);
+    const [paused, setPaused] = useState(false);
 
     const handleStopGame = () => {
         clearInterval(intervalRef.current);
@@ -46,7 +46,7 @@ const Game = props => {
             pathname: 'result',
             state: {
                 gameIndex: games.length + 1,
-                gameScore: Math.round(game.totaltime, 2),
+                gameScore: game.totaltime.toFixed(2),
                 highScore: game.totaltime > Math.max(games.map(game => game.totaltime))
             }
         } );
@@ -57,14 +57,17 @@ const Game = props => {
     const handleWordChange = (event) => {
         paused === false && setTypedWord(event.target.value);
         if(word.trim().toLowerCase() === event.target.value.trim().toLowerCase()) {
-               const difficultyFactor = GameService.getDifficultyFactor(games.length, GameService.getCurrentDifficultyFactor());
+            const difficultyFactor = GameService.getDifficultyFactor(
+                    game.words.length,
+                    GameService.getCurrentDifficultyFactor());
+            GameService.updatedDifficultyFactor(difficultyFactor);
             setGame({
                 words: [...game.words, { word: word, time: time, timeOffset: timeOffset, keystrokes: keystrokes  }],
                 totaltime: game.totaltime + ((time - timeOffset) / 1000)
             });
 
             //Reset
-            const newWord = GameService.getNewword()
+            const newWord = GameService.getNewword(difficulty)
             setWord(newWord);
             setTypedWord('');
             setTime(GameService.getTimerValue(newWord, difficultyFactor));
@@ -114,7 +117,6 @@ const Game = props => {
                          highScoreIndex={games.indexOf(Math.max(...games))}
                          handleGameClick={handleGameClick}
                     />
-
                 </Column>
                 <Column gameprogress>
                     <Timer
@@ -144,29 +146,30 @@ const Game = props => {
                 display={displayModal}
                 handleCloseAction={()=>setDisplayModal('none')}>
                     <table>
-
-                        <TableRow>
+                        <TableHead>
                             <TableHeader>Word</TableHeader>
                             <TableHeader>Total Time</TableHeader>
                             <TableHeader>Time Taken</TableHeader>
                             <TableHeader>Changes</TableHeader>
-                        </TableRow>
-                        {
-                            selectedGame.words
-                                .map(currentWord => (
-                                    <TableRow key={currentWord.index}>
-                                        <TableColumn>{currentWord.word}</TableColumn>
-                                        <TableColumn>{Math.round(currentWord.time / 1000)}</TableColumn>
-                                        <TableColumn>{Math.round(currentWord.timeOffset / 1000)}</TableColumn>
-                                        <TableColumn>
-                                            <GameQualitySpan style={
-                                            {'background-color': GameService.getBgColor(currentWord.word.length, currentWord.keystrokes) }} >
-                                                {currentWord.word.length} : {currentWord.keystrokes}
-                                            </GameQualitySpan>
-                                        </TableColumn>
-                                    </TableRow>
-                            ))
-                        }
+                        </TableHead>
+                        <tbody>
+                            {
+                                selectedGame.words
+                                    .map(currentWord => (
+                                        <TableRow key={currentWord.index}>
+                                            <TableColumn>{currentWord.word}</TableColumn>
+                                            <TableColumn>{(currentWord.time / 1000).toFixed(2)}</TableColumn>
+                                            <TableColumn>{(currentWord.timeOffset / 1000).toFixed(2)}</TableColumn>
+                                            <TableColumn>
+                                                <GameQualitySpan style={
+                                                {'background-color': GameService.getBgColor(currentWord.word.length, currentWord.keystrokes) }} >
+                                                    {currentWord.word.length} : {currentWord.keystrokes}
+                                                </GameQualitySpan>
+                                            </TableColumn>
+                                        </TableRow>
+                                ))
+                            }
+                        </tbody>
                     </table>
             </Modal>
             <div>

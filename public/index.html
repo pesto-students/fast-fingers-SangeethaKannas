@@ -1,35 +1,27 @@
-import styled from 'styled-components'
+<!DOCTYPE html>
+<html lang="en">
 
-export const SocialMediaWrapper = styled.div`
-  position: fixed;
-  right: 2rem;
-  top: 45%;
-  max-width: 2rem;
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="The Ultimate Typing Game" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
 
-  @media screen and (max-width:600px) {
-    top: 13%;
-    right: 1.2rem;
-  }
-`
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-export const SocialMediaLink = styled.a`
-  font-size: 1rem;
-  margin-right: 0.3rem;
-  min-width: 2rem;
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-  text-align: center;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${props => props.bgColor};
-  margin-bottom: 1rem;
+  <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  @media screen and (max-width:600px) {
-    width: 2.5rem;
-    height: 2.5rem;
-    margin-bottom: 2rem;
-  }
-`
+  <title>Fast Fingers</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <main>
+    <div id="root"></div>
+  </main>
+</body>
+
+</html>

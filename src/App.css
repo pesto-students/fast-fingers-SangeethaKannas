@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  background-image: linear-gradient(#000,rgba(1,130,136,.1));
 }
 
 @media screen and (max-width:600px) {

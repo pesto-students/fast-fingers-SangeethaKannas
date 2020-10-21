@@ -21,15 +21,13 @@ export const AppName = styled.span`
 
 export const Header = styled.header`
   display: flex;
-  padding: 1rem 0rem;
-  min-width: 83%;
-  max-width: 83%;
+  padding: 1rem 0;
+  min-width: 100%;
+  max-width: 100%;
   align-self: center;
   color: var(--action-color);
 
   @media screen and (max-width:600px) {
-    padding: 0.5rem 0rem;
-    min-width: 100%;
-    max-width: 100%;
+    padding: 0.5rem 0;
   }
 `

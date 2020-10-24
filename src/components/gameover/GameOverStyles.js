@@ -16,14 +16,14 @@ export const GameOverSection = styled(FlexDiv)`
 
 export const Header = styled.header`
   font-size: 2rem;
-  color: white;
+  color: var(--font-color);
 `
 
 export const GameStatus = styled(FlexDiv)`
   flex-grow: 1;
   flex-shrink: 0;
   flex-direction: column;
-  color: white;
+  color: var(--font-color);
   align-items: center;
   justify-content: center;
 
@@ -32,13 +32,12 @@ export const GameStatus = styled(FlexDiv)`
   }
 `
 
-export const Score = styled.div`
+export const Score = styled(FlexDiv)`
   padding: 3rem 2rem;
-  display: flex;
   align-items: center;
   font-size: 5.5rem;
   justify-content: center;
-  color: white;
+  color: var(--font-color);
 
   @media screen and (max-width:600px) {
     font-size: 7rem;
@@ -46,7 +45,7 @@ export const Score = styled.div`
 `
 
 export const NewHighScore = styled.div`
-  color: white;
+  color: var(--font-color);
   margin: 2rem 0;
   font-size: 1.8rem;
 `

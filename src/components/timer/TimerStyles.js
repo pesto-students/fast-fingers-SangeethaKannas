@@ -15,7 +15,7 @@ export const Svg = styled.svg`
 
 export const Text = styled.text`
   text-anchor: middle;
-  fill: white;
+  fill: ${({theme}) => theme.colors.bodyText.main};
   font-size: 1.5rem;
 `
 
@@ -25,5 +25,4 @@ export const FontAwesomeSVG = styled(Text)`
   @media screen and (max-width:600px) {
     font-size : 2.1rem;
   }
-
 `

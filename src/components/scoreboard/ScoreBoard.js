@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const Score = styled.li`
     text-align: left;
-    color: white;
+    color: var(--font-color);
     margin: 0.5rem 0;
     font-size: 1.3rem;
 
@@ -45,7 +45,7 @@ const ScoreBoard = ({ games, highScoreIndex, handleGameClick }) => {
                                     <span className="best-score">
                                         {index === highScoreIndex ? 'PERSONAL BEST': ''}
                                     </span>
-                                    Game {index + 1}: {game.totaltime}
+                                    Game {index + 1}: {game.totaltime.toFixed(2)}
                                 </Score>
                                 )
                               }

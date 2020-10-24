@@ -1,10 +1,15 @@
 import { BaseTheme } from "./BaseTheme";
 
 export class DarkTheme extends BaseTheme {
+  name = 'dark';
   colors = {
-    action:    '#ff5155',
+    action: '#ff5155',
     bodyText: {
-      main: '#fff'
+      main: '#fff',
+      background: '#000'
+    },
+    body: {
+      gradient: 'linear-gradient(#000,rgba(1,30,36,.8))'
     }
   };
 

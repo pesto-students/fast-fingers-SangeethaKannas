@@ -5,3 +5,17 @@
 @media screen and (max-width:600px) {
   padding: 0.5rem 1rem;
 }
+
+.toggle-container {
+  position: fixed;
+  top: 2rem;
+  right: 27rem;
+  background: transparent;
+}
+
+ @media screen and (max-width:600px) {
+  .toggle-container {
+    right: 10px;
+    top: 4rem;
+  }
+}

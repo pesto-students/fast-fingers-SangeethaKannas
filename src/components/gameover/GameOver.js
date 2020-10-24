@@ -10,7 +10,7 @@ const GameOver = props => {
     let history = useHistory();
 
     let { gameIndex, gameScore, highScore = false } =
-            props.location && typeof props.location.state != 'undefined'  ? props.location.state : {};
+            props.location && typeof props.location.state != 'undefined' ? props.location.state : {};
 
     let { name, difficulty } =
             props.location && typeof props.location.state != 'undefined' && props.location.state.difficulty
@@ -32,8 +32,7 @@ const GameOver = props => {
                             {
                                 highScore === true ? <NewHighScore>NEW HIGH SCORE</NewHighScore> : ""
                             }
-                        </div>) :
-                        ('')
+                        </div>) : ('')
                 }
 
                 <Link to='/game' >
@@ -47,4 +46,4 @@ const GameOver = props => {
 
 };
 
-export default GameOver;    
+export default GameOver;

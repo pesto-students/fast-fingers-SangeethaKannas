@@ -1,4 +1,4 @@
-Fast Fingers
+## Fast Fingers ##
 
 https://www.fastfingers.tk
 

@@ -3,8 +3,8 @@
 https://www.fastfingers.tk
 
 **About**
-A simple front end project for improving user's typing skills
-Game has three levels 
+ A simple front end project for improving user's typing skills
+ Game has three levels 
 
  1. Easy  		 ( Words with letters 0 - 5 ) 
  2. Medium  ( Words with letters 6 - 10 )

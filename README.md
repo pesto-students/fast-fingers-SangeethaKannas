@@ -18,6 +18,17 @@ https://www.fastfingers.tk
 - Play | Pause when required
 - Stop Game as required
 
+**Future**
+- Internationalization
+- Game Statistics
+- Context based Gaming
+- Audio Based Gaming
+- More Social Media
+- Web Accessibility
+- UI Fixes
+- Automated Unit and Systm Testing
+- Other Type of Games
+
 **Tech Stack**
 
 > React 

@@ -37,7 +37,7 @@ const ScoreBoard = ({ games, highScoreIndex, handleGameClick }) => {
         return (
             <Scores>
                 <header>SCORE BOARD</header>
-                    <ul>
+                    <ul className="scores">
                         {
                             games.map((game, index) => {
                               return (

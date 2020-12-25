@@ -4,11 +4,11 @@ import BaseElement from './BaseElement';
 
 export const FontAwesome = ({className, fontSize = '1.5rem', ...props}) => {
   const FA_STYLE = {
-      "font-size": fontSize,
+      "fontSize": fontSize,
        color: props.color || "var(--action-color)",
-       "min-width": "2rem"
+       "minWidth": "2rem"
   }
-  return <i style={FA_STYLE} className={"fa fa-" + className} aria-hidden="true"></i>;
+  return <i style={FA_STYLE} alt="fa" className={"fa fa-" + className} aria-hidden="true"></i>;
 }
 
 export const FlexDiv = styled(BaseElement).attrs(props => {
@@ -18,7 +18,6 @@ export const FlexDiv = styled(BaseElement).attrs(props => {
       py: props.theme.spacing(1),
     },
     flex: {
-
     },
     textAlign: 'center',
   }

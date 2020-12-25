@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { StartGameDiv, StartButton, RightArrow, Input, StartGameWrapper, DifficultyLevel } from './StartGameStyles'
 import AppHeader from './appheader/appheader'
@@ -38,6 +38,13 @@ const StartGame = () => {
         }
     }
     const theme = new DarkTheme();
+
+    useEffect(() => {
+        if (nameInput.current) {
+        nameInput.current.focus();
+        }
+    }, []);
+
 
     return (
         <ThemeProvider theme={theme} >

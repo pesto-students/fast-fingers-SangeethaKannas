@@ -7,7 +7,7 @@ const Switch = styled.label`
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 34px;
+  height: 30px;
 
   input {
     opacity: 0;
@@ -32,16 +32,15 @@ const Slider = styled.span`
   background-color: #ccc;
   -webkit-transition: .4s;
   transition: .4s;
-  border-radius: 34px;
+  border-radius: 1rem;
   background-color: ${({theme}) => theme.colors.bodyText.background};
   border 2px solid ${({theme}) => theme.colors.bodyText.main};
-
 
   &::before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 20px;
+    width: 20px;
     bottom: 4px;
     background-color: white;
     -webkit-transition: .4s;
@@ -53,7 +52,6 @@ const Slider = styled.span`
       height: 1.2rem;
       width: 1.2rem;
       bottom: 1px;
-
     }
 
   }

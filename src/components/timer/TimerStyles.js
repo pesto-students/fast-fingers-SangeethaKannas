@@ -16,7 +16,7 @@ export const Svg = styled.svg`
 export const Text = styled.text`
   text-anchor: middle;
   fill: ${({theme}) => theme.colors.bodyText.main};
-  font-size: 1.5rem;
+  font-size: 1.9rem;
 `
 
 export const FontAwesomeSVG = styled(Text)`

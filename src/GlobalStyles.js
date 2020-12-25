@@ -19,7 +19,7 @@ export const GlobalStyles = createGlobalStyle`
 
   main {
     background-image: ${({theme}) => theme.colors.body.gradient};
-    height: 100%;
+    height: 100vh;
   }
 
   ul, li {

@@ -35,7 +35,7 @@ export const GameStatus = styled(FlexDiv)`
 export const Score = styled(FlexDiv)`
   padding: 3rem 2rem;
   align-items: center;
-  font-size: 5.5rem;
+  font-size: 7.5rem;
   justify-content: center;
   color: var(--font-color);
 

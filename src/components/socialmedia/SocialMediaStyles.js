@@ -7,7 +7,7 @@ export const SocialMediaWrapper = styled.div`
   max-width: 2rem;
 
   @media screen and (max-width:600px) {
-    top: 13%;
+    top: 33%;
     right: 1.2rem;
   }
 `
@@ -27,7 +27,7 @@ export const SocialMediaLink = styled.a`
   background-color: ${props => props.bgColor};
   margin-bottom: 1rem;
 
-  @media screen and (max-width:600px) {
+  @media only screen and (max-width:600px) {
     width: 2.5rem;
     height: 2.5rem;
     margin-bottom: 2rem;

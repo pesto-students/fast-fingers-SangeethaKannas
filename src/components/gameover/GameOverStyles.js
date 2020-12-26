@@ -11,6 +11,7 @@ export const GameOverSection = styled(FlexDiv)`
 
   @media screen and (max-width:600px) {
     padding: 0.5rem 1rem;
+
   }
 `
 
@@ -39,8 +40,13 @@ export const Score = styled(FlexDiv)`
   justify-content: center;
   color: var(--font-color);
 
-  @media screen and (max-width:600px) {
+  @media screen and (max-width:600px) and (orientation:portrait) {
     font-size: 7rem;
+  }
+
+  @media screen and (max-width:600px) and (orientation:landscape) {
+    font-size: 6rem;
+    padding: 0;
   }
 `
 

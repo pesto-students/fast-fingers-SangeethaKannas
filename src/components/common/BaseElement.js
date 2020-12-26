@@ -1,46 +1,14 @@
 import styled from 'styled-components';
 
-/*
-BaseElementProps {
-  // text alignment
-  textAlign?: 'left' | 'right' | 'center';
-
-  // spacing
-  ml?: string;
-  mr?: string;
-  mt?: string;
-  mb?: string;
-  pl?: string;
-  pr?: string;
-  pt?: string;
-  pb?: string;
-
-  // colors
-  color?: string;
-  backgroundColor?: string;
-
-  // display
-  display?:
-    | 'flex'
-    | 'inline-flex'
-    | 'block'
-    | 'inline-block'
-    | 'inline'
-    | 'none';
-  justifyContent?:
-    | 'center'
-    | 'flex-start'
-    | 'flex-end'
-    | 'space-around'
-    | 'space-between';
-  alignItems?:
-    | 'center'
-    | 'flex-start'
-    | 'flex-end'
-    | 'space-around'
-    | 'space-between';
+// can be global styles
+function baseStyles({ theme }) {
+  return {
+    color: theme.colors.bodyText.main,
+    fontSize: theme.typography.body,
+    fontFamily: theme.typography.fontFamily,
+    boxSizing: 'border-box',
+  };
 }
-*/
 
 function spacing({ spacing }) {
   if (!spacing) {
@@ -171,20 +139,7 @@ function flex({ flex, justifyContent, alignItems, flexWrap }) {
 }
 
 function textAlignment({ textAlign }) {
-  if (textAlign) {
-    return { textAlign };
-  }
-  return null;
-}
-
-// can be global styles
-function baseStyles({ theme }) {
-  return {
-    color: theme.colors.bodyText.main,
-    fontSize: theme.typography.body,
-    fontFamily: theme.typography.fontFamily,
-    boxSizing: 'border-box',
-  };
+  return textAlign || null;
 }
 
 const BaseElement = styled.div(

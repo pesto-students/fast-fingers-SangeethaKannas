@@ -9,6 +9,20 @@
 .toggle-container {
   position: fixed;
   top: 5rem;
-  right: 2rem;
+  right: 1rem;
   background: transparent;
+
+
+}
+
+@media only screen and (max-width:600px) and (max-height:900px) {
+    .toggle-container {
+      top: 3rem;
+    }
+}
+
+@media only screen and (max-width:600px) and (orientation:landscape) {
+    .toggle-container {
+      top: 3rem;
+    }
 }

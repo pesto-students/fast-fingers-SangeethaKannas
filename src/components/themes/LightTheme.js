@@ -1,6 +1,7 @@
 import { BaseTheme } from "./BaseTheme";
 
 export class LightTheme extends BaseTheme {
+
   name = 'light';
 
   colors = {
@@ -13,8 +14,9 @@ export class LightTheme extends BaseTheme {
       gradient: 'linear-gradient(#fff,rgba(203, 220, 223, 0.8));'
     }
   }
-    typography = {
-     fontFamily: 'sans-serif',
+
+  typography = {
+    fontFamily: 'sans-serif',
     fontWeight: '400',
     h1: '4rem',
     h2: '3rem',
@@ -24,6 +26,5 @@ export class LightTheme extends BaseTheme {
     h6: '0.8rem',
     body: '1rem'
   }
-
 
 }

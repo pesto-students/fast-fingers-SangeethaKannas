@@ -24,11 +24,11 @@ export const Button = styled(BaseElement).attrs(props => {
 `;
 
 export const ActionButton = styled(Button)`
-    font-size: 1.5rem;
-    color: ${props => props.theme.colors.action};
-    flex-grow: 1;
+  font-size: 1.5rem;
+  color: ${props => props.theme.colors.action};
+  flex-grow: 1;
 
-    @media screen and (max-width:600px) {
-      padding: 0.5rem 1rem;
-    }
+  @media screen and (max-width:600px) {
+    padding: 0.5rem 1rem;
+  }
 `

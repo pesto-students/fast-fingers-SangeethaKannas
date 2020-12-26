@@ -18,9 +18,14 @@ const Letter = styled.span`
 const WordWrapper = styled.div`
     margin: 1rem 0;
 
-    @media screen and (max-width:600px) {
+    @media screen and (max-device-width:600px) {
         margin-top: 2rem;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    @media screen and (max-device-width:600px) and (orientation:landscape) {
+        margin-top: 0rem;
+        margin-bottom: 0rem;
     }
 `
 

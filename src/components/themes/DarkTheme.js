@@ -2,6 +2,7 @@ import { BaseTheme } from "./BaseTheme";
 
 export class DarkTheme extends BaseTheme {
   name = 'dark';
+
   colors = {
     action: '#ff5155',
     bodyText: {
@@ -14,7 +15,7 @@ export class DarkTheme extends BaseTheme {
   };
 
   typography = {
-     fontFamily: 'sans-serif',
+    fontFamily: 'sans-serif',
     fontWeight: '400',
     h1: '4rem',
     h2: '3rem',

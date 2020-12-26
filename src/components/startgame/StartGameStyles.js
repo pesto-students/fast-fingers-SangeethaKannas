@@ -67,4 +67,6 @@ export const StartGameDiv = styled(FlexDiv)`
     align-items: center;
     flex-direction: column;
     padding: 1rem 0;
+    height: 100vh;
+    overflow: auto;
 `

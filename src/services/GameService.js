@@ -36,27 +36,23 @@ const GameService = {
     } else {
       newDifficultyLevel = 'EASY';
     }
-    console.log(newDifficultyLevel)
     storeInSession('difficulty', newDifficultyLevel)
   },
 
   getGames: () => JSON.parse(sessionStorage.getItem('games') || '[]'),
 
-  getFromSession: () => sessionStorage.getItem('difficulty'),
+  getFromSession: (itemName = 'difficulty') => sessionStorage.getItem(itemName),
 
   storeInSession: (itemName, item) => storeInSession(itemName, item),
 
   getDataFromSession: () => (  {
-          name: sessionStorage.getItem('name'),
-          difficulty: sessionStorage.getItem('difficulty')
+          name: sessionStorage.getItem('name') || '',
+          difficulty: sessionStorage.getItem('difficulty') || 'EASY'
       }),
 
-  getBgColor: (wordLength, changesCount) => {
-    return `rgb(${0 + (changesCount - wordLength)}, ${255 - (changesCount - wordLength)}, 0, 1)`
-  },
+  getBgColor: (wordLength, changesCount) =>
+    `rgb(${0 + (changesCount - wordLength)}, ${255 - (changesCount - wordLength)}, 0, 1)`
 
-  // getSyllables: word => {
-  // }
 }
 
 export default GameService;

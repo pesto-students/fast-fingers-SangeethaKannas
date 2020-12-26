@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+//TODO: Get color from themes
 const Letter = styled.span`
     text-transform: uppercase;
     font-size: 2rem;
@@ -21,13 +22,14 @@ const WordWrapper = styled.div`
         margin-top: 2rem;
         margin-bottom: 3rem;
     }
-
 `
 
 const Word = ({ word, typedWord }) =>
         <WordWrapper>
             {
                 [...word]
+                    .map(letter => letter.trim())
+                    .filter(letter => letter.length > 0)
                     .map((letter, index) =>
                         <Letter
                             letter={letter}

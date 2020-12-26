@@ -14,7 +14,7 @@ const GameHeader = ({ name, difficulty }) => {
                 <div>
                     <FontAwesome className={'gamepad'}/>
                     <span>LEVEL : </span>
-                    <span className="difficultylevel">{difficulty}</span>
+                    <span>{difficulty}</span>
                 </div>
             </PlayerDetails>
             <AppName>fast fingers</AppName>

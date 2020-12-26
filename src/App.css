@@ -8,14 +8,7 @@
 
 .toggle-container {
   position: fixed;
-  top: 2rem;
-  right: 27rem;
+  top: 5rem;
+  right: 2rem;
   background: transparent;
-}
-
- @media screen and (max-width:600px) {
-  .toggle-container {
-    right: 10px;
-    top: 4rem;
-  }
 }

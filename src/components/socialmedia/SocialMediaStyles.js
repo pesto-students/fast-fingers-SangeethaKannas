@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const SocialMediaWrapper = styled.div`
   position: fixed;
   right: 2rem;
-  top: 40%;
+  top: 45%;
   max-width: 2rem;
 
   @media screen and (max-width:600px) {

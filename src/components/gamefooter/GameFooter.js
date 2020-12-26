@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { FontAwesome } from "../common/commoncomponents";
@@ -27,6 +28,16 @@ const GameFooter = ({actionText, handleStopGame}) => {
       </Link>
     </Footer>
   )
+};
+
+GameFooter.propTypes = {
+  actionText: PropTypes.string,
+  handleStopGame: PropTypes.func
+};
+
+GameFooter.defaultProps = {
+  actionText: 'STOP GAME',
+  handleStopGame: () => {}
 };
 
 export default GameFooter;
